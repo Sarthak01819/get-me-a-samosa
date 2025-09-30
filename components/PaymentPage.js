@@ -1,6 +1,6 @@
 "use client"
 
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useCallback } from 'react'
 import Script from 'next/script'
 import { useSession } from 'next-auth/react'
 import { fetchuser, fetchpayments, initiate } from '@/actions/useractions'
@@ -8,7 +8,7 @@ import { useSearchParams } from 'next/navigation'
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css'
 import { Bounce } from 'react-toastify'
-import { notFound } from 'next/navigation'
+import Image from 'next/image'
 
 const PaymentPage = ({ username }) => {
 
@@ -24,16 +24,16 @@ const PaymentPage = ({ username }) => {
         amount: ''
     }))
 
-    const getData = async () => {
+    const getData = useCallback(async () => {
         let u = await fetchuser(username)
         setCurrentuser(u || {})
         let dbpayments = await fetchpayments(username)
         setPayments(dbpayments || [])
-    }
+    }, [username])
 
     useEffect(() => {
         getData()
-    }, [])
+    }, [getData])
 
     useEffect(() => {
         if (searchParams.get("paymentdone") === "true") {
@@ -123,14 +123,14 @@ const PaymentPage = ({ username }) => {
             <Script src="https://checkout.razorpay.com/v1/checkout.js"></Script>
 
             <div className='cover relative'>
-                <img src={currentuser?.coverpic || "/default-cover.png"} alt="cover" className='lg:w-full w-[100vw] sm:h-auto h-[30vh] object-cover' />
+                <Image src={currentuser?.coverpic || "/default-cover.png"} alt="cover" className='lg:w-full w-[100vw] sm:h-auto h-[30vh] object-cover' />
                 <div className='pfp h-26 w-26 mt-3 absolute top-5/6 right-1/2 translate-x-1/2 -bottom-14 border-2 border-white rounded-full overflow-hidden'>
-                    <img className='h-26 w-26' src={currentuser?.profilepic || "/default-pfp.png"} alt="pfp" />
+                    <Image className='h-26 w-26' src={currentuser?.profilepic || "/default-pfp.png"} alt="pfp" />
                 </div>
             </div>
             <div className="info flex flex-col items-center justify-center xl:mt-14 mt-24 mb-10 gap-3">
                 <span className='text-2xl font-bold'>@{username}</span>
-                <span className='text-slate-400'>Creating Animated art for VTT's</span>
+                <span className='text-slate-400'>Creating Animated art for VTT&apos;s</span>
                 <span className='text-slate-400'>{payments.length} Payments . ₹{payments.reduce((a, b) => a + b.amount, 0) / 100} raised</span>
             </div>
             <div className="payment flex gap-3 w-[80%] mx-auto sm:h-[70vh] h-auto sm:flex-row flex-col pb-32">
@@ -143,9 +143,9 @@ const PaymentPage = ({ username }) => {
                             return (
                                 <li key={key} className='flex items-center gap-3 pr-4'>
                                     <div className='relative bg-slate-500 rounded-full h-8 w-8 flex items-center justify-center pb-0.5'>
-                                        <img className='h-6' src="/user-avatar.gif" alt="user avatar" />
+                                        <Image className='h-6' src="/user-avatar.gif" alt="user avatar" />
                                     </div>
-                                    <span className='w-[90%]'>{p?.name || "Anonymous"} donates <span className='font-bold'>₹{(p?.amount || 0) / 100}</span> {p?.message && <>with a message <span className='font-bold'>"{p.message}"</span>.</>}</span>
+                                    <span className='w-[90%]'>{p?.name || "Anonymous"} donates <span className='font-bold'>₹{(p?.amount || 0) / 100}</span> {p?.message && <>with a message <span className='font-bold'>&quot;{p.message}&quot;</span>.</>}</span>
                                 </li>
                             )
                         })}

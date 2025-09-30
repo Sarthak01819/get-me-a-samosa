@@ -2,6 +2,7 @@
 import React, { useState, useRef, useEffect } from 'react'
 import { useSession, signIn, signOut } from "next-auth/react"
 import Link from 'next/link'
+import Image from 'next/image'
 
 const Navbar = () => {
     const { data: session } = useSession()
@@ -23,7 +24,7 @@ const Navbar = () => {
     return (
         <nav className='bg-gray-900 text-white p-4 flex justify-between items-center sm:flex-row flex-col gap-4'>
             <Link className='flex items-center gap-3' href={"/"}>
-                <img className='h-9 w-10 rounded-lg' src="/samosa.gif" alt="" />
+                <Image className='h-9 w-10 rounded-lg' src="/samosa.gif" alt="" />
                 <h1 className="logo font-bold text-[26px]">GetMeASamosa!</h1>
             </Link>
 

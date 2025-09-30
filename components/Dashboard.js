@@ -1,6 +1,6 @@
 "use client"
 
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useCallback } from 'react'
 import { useSession, signIn, signOut } from "next-auth/react"
 import { useRouter } from 'next/navigation'
 import { fetchuser, updateProfile } from '@/actions/useractions'
@@ -13,6 +13,12 @@ const Dashboard = () => {
     const { data: session, status, update } = useSession()
     const [form, setform] = useState({})
 
+    const getData = useCallback(async () => {
+        if (!session?.user?.name) return
+        const u = await fetchuser(session.user.name)
+        setform(u ?? {})
+    }, [session?.user?.name])
+
     useEffect(() => {
         // redirect unauthenticated users
         if (status === 'unauthenticated') {
@@ -24,13 +30,7 @@ const Dashboard = () => {
         if (status === 'authenticated' && session?.user?.name) {
             getData()
         }
-    }, [status, router])
-
-    const getData = async () => {
-        if (!session?.user?.name) return
-        const u = await fetchuser(session.user.name)
-        setform(u ?? {})
-    }
+    }, [status, router, getData, session?.user?.name])
 
     const handleChange = (e) => {
         setform({ ...form, [e.target.name]: e.target.value })
@@ -121,4 +121,3 @@ const Dashboard = () => {
 }
 
 export default Dashboard
-

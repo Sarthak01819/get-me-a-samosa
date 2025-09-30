@@ -13,7 +13,7 @@ export default function Home() {
             Get Me A Samosa
           </span>
           <span>
-            <img className="h-14 w-15 rounded-lg" src="/samosa.gif" alt="Samosa" />
+            <Image className="h-14 w-15 rounded-lg" src="/samosa.gif" alt="Samosa" />
           </span>
         </div>
         <p className="text-center">
@@ -39,17 +39,17 @@ export default function Home() {
         <h2 className="font-bold text-center text-3xl my-14">Your fans can buy you a Samosa</h2>
         <div className="flex gap-5 items-center justify-around flex-wrap">
           <div className="item flex flex-col gap-2 justify-center items-center">
-            <img className="h-16 rounded-full bg-transparent" src="/worker.gif" alt="" />
+            <Image className="h-16 rounded-full bg-transparent" src="/worker.gif" alt="" />
             <p className="font-bold text-center">Fund Yourself</p>
             <p className="text-center">Your fans are available for you to help you</p>
           </div>
           <div className="item flex flex-col gap-2 justify-center items-center">
-            <img className="h-16 rounded-full bg-transparent" src="/dollar.gif" alt="" />
+            <Image className="h-16 rounded-full bg-transparent" src="/dollar.gif" alt="" />
             <p className="font-bold text-center">Fans want to contribute</p>
             <p className="text-center">Fans are willing to contribute financially</p>
           </div>
           <div className="item flex flex-col gap-2 justify-center items-center">
-            <img className="h-16 rounded-full bg-transparent" src="/network.gif" alt="" />
+            <Image className="h-16 rounded-full bg-transparent" src="/network.gif" alt="" />
             <p className="font-bold text-center">Fans want to help</p>
             <p className="text-center">Your fans are ready to collaborate with you</p>
           </div>
