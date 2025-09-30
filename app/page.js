@@ -61,8 +61,7 @@ export default function Home() {
 
       <div className="text-white container mx-auto items-center pb-14 flex flex-col">
         <h2 className="font-bold text-center text-3xl my-14">Learn More About Us</h2>
-        <iframe className="w-[300px] sm:w-[560px] h-[150px] sm:h-[315px]" src="https://www.youtube.com/embed/gG12hcklsA0?si=ojWmcKboP5DCddZ1" title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerPolicy="strict-origin-when-cross-origin" allowFullScreen></iframe>
-      </div>
+        <iframe className="w-[300px] sm:w-[560px] h-[150px] sm:h-[315px]" src="https://www.youtube.com/embed/wDchsz8nmbo?si=AIvw3wOt_koqJHNq" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>      </div>
     </>
   );
 };
